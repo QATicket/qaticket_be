@@ -34,6 +34,7 @@ Mọi lỗi (400/401/403/404/409/500...) đều trả về JSON dạng:
   - `SIZE_SPEC` — Bảng thông số kích thước
   - `PACKING` — Quy cách đóng thùng/bao bì
   - `HANGTAG_LABEL` — Thẻ treo & nhãn hiệu
+  - `PACKING_LIST` — Packing list
 
 ---
 

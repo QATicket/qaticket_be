@@ -4,5 +4,6 @@ public enum SpecImageType {
     APPROVED_SAMPLE,
     SIZE_SPEC,
     PACKING,
-    HANGTAG_LABEL
+    HANGTAG_LABEL,
+    PACKING_LIST
 }
