@@ -45,7 +45,7 @@ public class QaDashboardService {
     }
 
     @Transactional(readOnly = true)
-    public QaDashboardResponse getDashboard(Long staffId, Long factoryId, Staff currentStaff) {
+    public QaDashboardResponse getDashboard(Long staffId, Long factoryId, InspectionStage inspectionStage, Staff currentStaff) {
         // Non-admins are restricted to their own data regardless of the staffId they pass in,
         // mirroring QaTicketService.list() — same rule, same reason.
         Long effectiveStaffId = currentStaff.getRole() == StaffRole.ADMIN ? staffId : currentStaff.getId();
@@ -54,7 +54,8 @@ public class QaDashboardService {
                 QaTicketSpecifications.withDashboardAssociations(),
                 QaTicketSpecifications.status(TicketStatus.SUBMITTED),
                 QaTicketSpecifications.staffId(effectiveStaffId),
-                QaTicketSpecifications.factoryId(factoryId)
+                QaTicketSpecifications.factoryId(factoryId),
+                QaTicketSpecifications.inspectionStage(inspectionStage)
         );
         List<QaTicket> tickets = qaTicketRepository.findAll(spec);
 

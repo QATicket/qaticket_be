@@ -1,6 +1,7 @@
 package com.qms.qms.service;
 
 import com.qms.qms.entity.QaTicket;
+import com.qms.qms.entity.enums.InspectionStage;
 import com.qms.qms.entity.enums.TicketStatus;
 import jakarta.persistence.criteria.JoinType;
 import org.springframework.data.jpa.domain.Specification;
@@ -35,6 +36,10 @@ public final class QaTicketSpecifications {
 
     public static Specification<QaTicket> staffId(Long staffId) {
         return (root, query, cb) -> staffId == null ? null : cb.equal(root.get("staff").get("id"), staffId);
+    }
+
+    public static Specification<QaTicket> inspectionStage(InspectionStage inspectionStage) {
+        return (root, query, cb) -> inspectionStage == null ? null : cb.equal(root.get("inspectionStage"), inspectionStage);
     }
 
     public static Specification<QaTicket> status(TicketStatus status) {

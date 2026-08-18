@@ -1,6 +1,7 @@
 package com.qms.qms.controller;
 
 import com.qms.qms.dto.dashboard.QaDashboardResponse;
+import com.qms.qms.entity.enums.InspectionStage;
 import com.qms.qms.security.StaffPrincipal;
 import com.qms.qms.service.QaDashboardService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -21,14 +22,15 @@ public class QaDashboardController {
 
     /**
      * Aggregated dashboard (stage counts, DHU timeline, defect Pareto, DHU by stage) across every
-     * SUBMITTED ticket currently in the database. {@code factoryId} is a free filter for everyone.
-     * {@code staffId} only applies to admins — non-admins always see just their own data, no
-     * matter what (or whether) they pass for {@code staffId}.
+     * SUBMITTED ticket currently in the database. {@code factoryId} and {@code inspectionStage} are
+     * free filters for everyone. {@code staffId} only applies to admins — non-admins always see just
+     * their own data, no matter what (or whether) they pass for {@code staffId}.
      */
     @GetMapping("/dashboard")
     public QaDashboardResponse dashboard(@RequestParam(required = false) Long staffId,
                                           @RequestParam(required = false) Long factoryId,
+                                          @RequestParam(required = false) InspectionStage inspectionStage,
                                           @AuthenticationPrincipal StaffPrincipal principal) {
-        return qaDashboardService.getDashboard(staffId, factoryId, principal.getStaff());
+        return qaDashboardService.getDashboard(staffId, factoryId, inspectionStage, principal.getStaff());
     }
 }
