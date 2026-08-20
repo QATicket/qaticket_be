@@ -16,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -65,6 +66,17 @@ public class AdminGarmentLocationController {
         location.setName(request.name());
         location = garmentLocationRepository.save(location);
         return ResponseEntity.ok(GarmentLocationResponse.from(location));
+    }
+
+    @CacheEvict(cacheNames = "garmentLocations", allEntries = true)
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id, @AuthenticationPrincipal StaffPrincipal principal) {
+        requireAdmin(principal);
+        if (!garmentLocationRepository.existsById(id)) {
+            throw new ResourceNotFoundException("Garment location not found: " + id);
+        }
+        garmentLocationRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 
     private void requireAdmin(StaffPrincipal principal) {

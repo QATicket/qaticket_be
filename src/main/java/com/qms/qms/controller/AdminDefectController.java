@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -58,6 +59,17 @@ public class AdminDefectController {
         defect.setNameVi(request.nameVi());
         defect = defectRepository.save(defect);
         return ResponseEntity.ok(DefectResponse.from(defect));
+    }
+
+    @CacheEvict(cacheNames = {"defects", "defectItems"}, allEntries = true)
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id, @AuthenticationPrincipal StaffPrincipal principal) {
+        requireAdmin(principal);
+        if (!defectRepository.existsById(id)) {
+            throw new ResourceNotFoundException("Defect not found: " + id);
+        }
+        defectRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 
     private void requireCodeAvailable(String code, Long excludeId) {

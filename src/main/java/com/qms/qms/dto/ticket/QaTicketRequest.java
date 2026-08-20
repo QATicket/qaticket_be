@@ -26,6 +26,8 @@ public record QaTicketRequest(
         @Min(1) Integer qtySize,
         @Min(0) Integer actualMajorDefects,
         @Min(0) Integer actualMinorDefects,
+        String specNote,
+        String qualityNote,
         @Valid List<QaTicketDefectRequest> defects,
         @Valid List<QaTicketSpecImageRequest> specImages,
         @Valid List<QaTicketMeasurementImageRequest> measurementImages

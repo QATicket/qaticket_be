@@ -176,6 +176,8 @@ public class QaTicketService {
         ticket.setInspectionStage(request.inspectionStage());
         ticket.setInspectedQty(request.inspectedQty());
         ticket.setStatus(request.status());
+        ticket.setSpecNote(request.specNote());
+        ticket.setQualityNote(request.qualityNote());
     }
 
     private void rebuildDefects(QaTicket ticket, QaTicketRequest request) {

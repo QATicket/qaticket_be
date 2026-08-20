@@ -97,6 +97,12 @@ public class QaTicket {
     @Column(name = "inspection_result", length = 20)
     private InspectionResult inspectionResult;
 
+    @Column(name = "spec_note", columnDefinition = "TEXT")
+    private String specNote;
+
+    @Column(name = "quality_note", columnDefinition = "TEXT")
+    private String qualityNote;
+
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
