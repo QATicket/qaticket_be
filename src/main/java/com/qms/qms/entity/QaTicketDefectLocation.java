@@ -34,6 +34,7 @@ public class QaTicketDefectLocation {
     private Integer quantity = 1;
 
     @OneToMany(mappedBy = "qaTicketDefectLocation", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OrderBy("id asc")
     private Set<QaTicketDefectImage> images = new LinkedHashSet<>();
 
     public void addImage(QaTicketDefectImage image) {

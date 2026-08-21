@@ -112,12 +112,15 @@ public class QaTicket {
     private LocalDateTime updatedAt;
 
     @OneToMany(mappedBy = "qaTicket", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OrderBy("id asc")
     private Set<QaTicketDefect> defects = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "qaTicket", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OrderBy("id asc")
     private Set<QaTicketSpecImage> specImages = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "qaTicket", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OrderBy("id asc")
     private Set<QaTicketMeasurementImage> measurementImages = new LinkedHashSet<>();
 
     public void addDefect(QaTicketDefect defect) {

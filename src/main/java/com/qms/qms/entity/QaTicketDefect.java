@@ -36,6 +36,7 @@ public class QaTicketDefect {
     private String note;
 
     @OneToMany(mappedBy = "qaTicketDefect", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OrderBy("id asc")
     private Set<QaTicketDefectLocation> locations = new LinkedHashSet<>();
 
     public void addLocation(QaTicketDefectLocation location) {
