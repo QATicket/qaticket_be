@@ -172,6 +172,7 @@ public class QaTicketService {
         ticket.setPoNumber(request.poNumber());
         ticket.setStyle(request.style());
         ticket.setCustomerName(request.customerName());
+        ticket.setColor(request.color());
         ticket.setGarmentType(getRef(garmentTypeRepository, request.garmentTypeId(), "GarmentType"));
         ticket.setInspectionStage(request.inspectionStage());
         ticket.setInspectedQty(request.inspectedQty());

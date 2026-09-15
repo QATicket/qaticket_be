@@ -120,7 +120,7 @@ class QaTicketImageOrderTest {
 
         QaTicketRequest request = new QaTicketRequest(
                 staff.getId(), factory.getId(), line.getId(), null,
-                InspectionStage.FINAL, "PO-TEST", "STYLE-TEST", 10, "Test Customer",
+                InspectionStage.FINAL, "PO-TEST", "STYLE-TEST", 10, "Test Customer", "Blue",
                 garmentType.getId(), TicketStatus.DRAFT,
                 null, null, null, null,
                 "spec note", "quality note",

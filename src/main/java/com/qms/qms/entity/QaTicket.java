@@ -55,6 +55,9 @@ public class QaTicket {
     @Column(name = "customer_name", nullable = false, length = 150)
     private String customerName;
 
+    @Column(length = 30)
+    private String color;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "garment_type_id", nullable = false)
     private GarmentType garmentType;

@@ -20,6 +20,7 @@ public record QaTicketRequest(
         String style,
         @NotNull @Min(1) Integer inspectedQty,
         @NotBlank String customerName,
+        String color,
         @NotNull Long garmentTypeId,
         @NotNull TicketStatus status,
         AqlLevel aqlLevel,
